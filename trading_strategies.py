@@ -969,9 +969,13 @@ elif menu == "Greeks Dashboard":
     gammas=[greeks(s,K_gd,T_gd,r_gd,sigma_gd)["gamma"] for s in spots]
     fig=go.Figure()
     fig.add_trace(go.Scatter(x=spots,y=deltas_c,name='Call Delta',line=dict(color='#174EA6',width=2)))
-    fig.add_trace(go.Scatter(x=spots,y=gammas,name='Gamma (×100)',
-                              y=[g*100 for g in gammas],line=dict(color='#F5A623',width=2,dash='dash'),
-                              yaxis='y2'))
+    fig.add_trace(go.Scatter(
+    x=spots,
+    y=[g*100 for g in gammas],
+    name='Gamma (×100)',
+    line=dict(color='#F5A623', width=2, dash='dash'),
+    yaxis='y2'))
+   
     fig.add_vline(x=S_gd,line_dash='dash',line_color='gray')
     fig.update_layout(title="Delta & Gamma vs Spot",xaxis_title="Spot",yaxis_title="Delta",
                       yaxis2=dict(overlaying='y',side='right',title="Gamma ×100"))
